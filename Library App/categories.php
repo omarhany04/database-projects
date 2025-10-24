@@ -7,30 +7,32 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="style.css">
 </head>
-<body class="bg-gray-50 p-6">
-  <a href="index.php" class="text-blue-700 underline">← Back</a>
-  <h1 class="text-2xl font-bold mb-4 text-blue-700">Categories</h1>
+<body class="bg-gray-800 p-8">
+    <a href="index.php" class="back-btn">
+  <span class="text-xl">←</span> Back to Dashboard
+  </a>
+  <h1 class="text-3xl font-bold mb-6 text-blue-400">Categories</h1>
 
-  <form action="add_record.php" method="POST" class="mb-6 flex flex-wrap gap-2">
+  <form action="add_record.php" method="POST" class="mb-8 flex flex-wrap gap-4 p-4 bg-gray-700 rounded-lg shadow-inner">
     <input type="hidden" name="table" value="category">
-    <input name="name" placeholder="Category Name" class="border p-2 rounded w-1/3">
-    <button class="bg-green-600 text-white px-4 rounded hover:bg-green-700">Add</button>
+    <input name="name" placeholder="Category Name" class="form-input-styled w-full md:w-1/3">
+    <button class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-150">Add Record</button>
   </form>
 
-  <table class="w-full border bg-white rounded shadow">
+  <table class="w-full custom-table bg-gray-700 rounded-xl shadow-2xl">
     <tr class="bg-blue-600 text-white text-left">
-      <th class="p-2">Category ID</th>
-      <th class="p-2">Name</th>
-      <th class="p-2">Action</th>
+      <th class="p-4">Category ID</th>
+      <th class="p-4">Name</th>
+      <th class="p-4">Action</th>
     </tr>
 
     <?php
     $res = $conn->query("SELECT * FROM CATEGORY");
     while ($row = $res->fetch_assoc()) {
-        echo "<tr class='border-b hover:bg-gray-100'>";
-        echo "<td class='p-2'>{$row['category_id']}</td>";
-        echo "<td class='p-2'>{$row['name']}</td>";
-        echo "<td class='p-2'><a href='delete_record.php?table=category&id={$row['category_id']}' class='text-red-600 hover:underline'>Delete</a></td>";
+        echo "<tr class='border-b border-gray-600 hover:bg-gray-100'>";
+        echo "<td class='p-4'>{$row['category_id']}</td>";
+        echo "<td class='p-4'>{$row['name']}</td>";
+        echo "<td class='p-4'><a href='delete_record.php?table=category&id={$row['category_id']}' class='text-red-600 hover:underline'>Delete</a></td>";
         echo "</tr>";
     }
     ?>
